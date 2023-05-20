@@ -1,22 +1,40 @@
-// iterate through the file `lines` and print every other lines
-fn iterate_file() {
-  let file = std::fs::read_to_string("lines").unwrap();
-
-  file
-    .lines()
-    .enumerate()
-    .filter(|(idx,_)| idx % 2 == 0)
-    .for_each(|(_, line)| println!("{}", line));
+enum Color {
+  Red,
+  Blue,
+  Green,
+  Yellow
 }
 
-// same as above but skip the first two lines
-fn main() {
-  let file = std::fs::read_to_string("lines").unwrap();
+impl Color {
+  fn is_green(&self) -> bool {
+    if let Color::Green = self {
+      return true;
+    }
+    return false;
+  }
 
-  file
-    .lines()
-    .enumerate()
-    .filter(|(idx,_)| idx % 2 == 0)
-    .skip(2)
-    .for_each(|(_,line)| println!("{}", line));
+  fn is_green_parts(&self) -> bool {
+    match self {
+        Color::Red => return false,
+        Color::Blue => return true,
+        Color::Green => return false,
+        Color::Yellow => return true,
+    }
+  }
+}
+
+fn print_color(color: Color) {
+  match color {
+    Color::Red => println!("red"),
+    Color::Blue => println!("blue"),
+    Color::Green => println!("green"),
+    Color::Yellow => println!("yellow")
+  };
+}
+
+fn main() {
+  let foo = Color::Blue;
+
+  print!("foo is green: {:?}\n", foo.is_green());
+  print!("foo is green parts: {:?}\n", foo.is_green_parts());
 }

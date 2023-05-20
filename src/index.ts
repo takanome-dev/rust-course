@@ -1,3 +1,5 @@
+// ---------------------------------- ITERATE THROUGH FILE ----------------------------------
+
 import fs from "fs";
 import path from "path";
 
@@ -5,13 +7,13 @@ import path from "path";
 // and print each line to the console
 
 // Do it this way
-// fs.readFileSync("lines")
-//   .toString()
-//   .split("\n")
-//   .filter((_, i) => i % 2 === 0)
-//   .forEach(line => {
-//     console.log(line);
-//   });
+fs.readFileSync("lines")
+  .toString()
+  .split("\n")
+  .filter((_, i) => i % 2 === 0)
+  .forEach(line => {
+    console.log(line);
+  });
 
 // Or this way
 fs.readFileSync(path.join(__dirname, "../lines"), {
@@ -34,3 +36,28 @@ fs.readFileSync(path.join(__dirname, "../lines"), {
   .forEach(line => {
     console.log(line);
   });
+
+// ------------------------------------- ENUMS ---------------------------------------
+
+enum Color {
+  Red,
+  Green,
+  Blue,
+  Yellow,
+}
+
+function printColor(color: Color) {
+  switch (color) {
+    case Color.Red:
+      console.log("red");
+      break;
+    case Color.Green:
+      console.log("green");
+      break;
+    case Color.Blue:
+      console.log("blue");
+      break;
+  }
+}
+
+printColor(Color.Yellow);
