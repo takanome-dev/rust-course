@@ -32,9 +32,33 @@ fn print_color(color: Color) {
   };
 }
 
-fn main() {
+fn log() {
   let foo = Color::Blue;
 
   print!("foo is green: {:?}\n", foo.is_green());
   print!("foo is green parts: {:?}\n", foo.is_green_parts());
+}
+
+struct Custom {
+  age: usize,
+  name: String
+}
+
+enum Item {
+  Number(usize),
+  String(String),
+  MyCustom(Custom)
+}
+
+fn append(items: &mut Vec<Item>) {
+  items.push(Item::String("Hello Fem!".into()));
+}
+
+fn main() {
+  let mut items: Vec<Item> = vec![];
+  append(&mut items);
+
+  // THIS WILL ERROR COMPARE TO TS which won't
+  // let mut items: Vec<usize> = vec![];
+  // append(&mut items);
 }
