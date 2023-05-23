@@ -1,64 +1,64 @@
-enum Color {
-  Red,
-  Blue,
-  Green,
-  Yellow
-}
-
-impl Color {
-  fn is_green(&self) -> bool {
-    if let Color::Green = self {
-      return true;
-    }
-    return false;
+fn multiply_1(num: Option<usize>) -> usize {
+  if num.is_some() {
+    return num.unwrap() * 5;
   }
+  return 0;
+}
 
-  fn is_green_parts(&self) -> bool {
-    match self {
-        Color::Red => return false,
-        Color::Blue => return true,
-        Color::Green => return false,
-        Color::Yellow => return true,
-    }
+fn multiply_2(num: Option<usize>) -> usize {
+  if let Some(x) = num {
+    return x * 5;
   }
+  return 0;
 }
 
-fn print_color(color: Color) {
-  match color {
-    Color::Red => println!("red"),
-    Color::Blue => println!("blue"),
-    Color::Green => println!("green"),
-    Color::Yellow => println!("yellow")
-  };
+fn multiply_3(num: Option<usize>) -> usize {
+  return num.unwrap_or(0) * 5;
 }
 
-fn log() {
-  let foo = Color::Blue;
-
-  print!("foo is green: {:?}\n", foo.is_green());
-  print!("foo is green parts: {:?}\n", foo.is_green_parts());
+fn multiply_4(num: Option<usize>) -> Option<usize> {
+  return num.map(|x| x*5);
 }
 
-struct Custom {
-  age: usize,
-  name: String
+fn multiply_5(num: Option<usize>) -> Option<usize> {
+  let num = num?;
+  return Some(num * 5);
 }
 
-enum Item {
-  Number(usize),
-  String(String),
-  MyCustom(Custom)
+fn multiply_6(num: Option<usize>) -> Option<usize> {
+  return Some(num? * 5);
 }
 
-fn append(items: &mut Vec<Item>) {
-  items.push(Item::String("Hello Fem!".into()));
+fn run_multiply() {
+  let num = 5;
+  // all the multiplies above give the same result
+  let resp = multiply_1(Some(num));
+  println!("{}", resp);
+}
+
+//  ----------------------- SMALL PROGRAM ------------------------------- 
+// let's do a moment of practice
+
+fn practice_1(nums: Vec<usize>, idx: usize) -> usize {
+  if nums.get(idx).is_some() {
+    return nums.get(idx).unwrap() * 5;
+  }
+  return idx * 5;
+}
+
+fn practice_2(nums: Vec<usize>, idx: usize) -> usize {
+  if let Some(x) = nums.get(idx) {
+    return x * 5;
+  }
+  return idx * 5;
+}
+
+fn practice_3(nums: Vec<usize>, idx: usize) -> usize {
+  return nums.get(idx).unwrap_or(&idx) * 5;
 }
 
 fn main() {
-  let mut items: Vec<Item> = vec![];
-  append(&mut items);
-
-  // THIS WILL ERROR COMPARE TO TS which won't
-  // let mut items: Vec<usize> = vec![];
-  // append(&mut items);
+  let numbers_1 = vec![1,2,3,4,5];
+  let resp_1 = practice_1(numbers_1, 1);
+  println!("{}", resp_1); // resp_1 -> 10
 }

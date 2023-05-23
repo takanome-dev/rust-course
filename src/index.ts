@@ -62,24 +62,32 @@
 
 // printColor(Color.Yellow);
 
-type Custom = {
-  age: number;
-  name: string;
-};
+// type Custom = {
+//   age: number;
+//   name: string;
+// };
 
-type Item = number | string | Custom;
+// type Item = number | string | Custom;
 
-const append = (items: Item[]) => {
-  return items.push("Hello Fem!");
-};
+// const append = (items: Item[]) => {
+//   return items.push("Hello Fem!");
+// };
 
-const items: Item[] = [];
-console.log({ items });
-append(items);
-console.log({ items });
+// const items: Item[] = [];
+// console.log({ items });
+// append(items);
+// console.log({ items });
 
-// const nums = [1, 2, 3, 4, 5];
-const numbers: number[] = [];
-console.log({ items });
-append(numbers);
-console.log({ items });
+// // const nums = [1, 2, 3, 4, 5];
+// const numbers: number[] = [];
+// console.log({ items });
+// append(numbers);
+// console.log({ items });
+
+function numberOrUndefined(value: number | undefined): number | undefined {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  return value * 5;
+}
